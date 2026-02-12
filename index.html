@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinanceFlow | Gestión y Visión Histórica</title>
+    
+    <link rel="icon" type="image/png" href="logo.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <link rel="stylesheet" href="styleGastos.css">
+</head>
+<body>
+
+    <div class="dashboard">
+        <header class="main-header">
+            <div class="brand">
+                <img src="logo.png" alt="FinanceFlow Logo" class="nav-logo">
+                <h1>Finance<span>Flow</span></h1>
+            </div>
+            
+            <div class="header-actions">
+                <button id="theme-toggle" class="theme-btn" title="Cambiar modo">
+                    <span id="theme-icon">🌙</span>
+                </button>
+
+                <div class="nav-group">
+                    <div class="select-wrapper">
+                        <select id="select-year" onchange="cargarDatosMes()" title="Seleccionar Año">
+                            </select>
+                    </div>
+                    <div class="select-wrapper">
+                        <select id="select-mes" onchange="cargarDatosMes()" title="Seleccionar Mes">
+                            <option value="0">Enero</option>
+                            <option value="1">Febrero</option>
+                            <option value="2">Marzo</option>
+                            <option value="3">Abril</option>
+                            <option value="4">Mayo</option>
+                            <option value="5">Junio</option>
+                            <option value="6">Julio</option>
+                            <option value="7">Agosto</option>
+                            <option value="8">Septiembre</option>
+                            <option value="9">Octubre</option>
+                            <option value="10">Noviembre</option>
+                            <option value="11">Diciembre</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="patrimonio-grid">
+            <div class="card glass">
+                <h3>🏦 Banco</h3>
+                <input type="number" id="pat-banco" placeholder="0" onchange="guardarYCalcular()">
+            </div>
+            <div class="card glass">
+                <h3>💵 Efectivo</h3>
+                <input type="number" id="pat-efectivo" placeholder="0" onchange="guardarYCalcular()">
+            </div>
+            <div class="card glass">
+                <h3>📈 Inversiones</h3>
+                <input type="number" id="pat-inversiones" placeholder="0" onchange="guardarYCalcular()">
+            </div>
+            <div class="card highlight">
+                <h3>Total Patrimonio</h3>
+                <p id="suma-patrimonio">0.00€</p>
+                <small>vs Mes Anterior: <span id="dif-mes">0.00</span>€</small>
+            </div>
+        </section>
+
+        <section class="card glass chart-full-width">
+            <div class="card-header">
+                <h2>Evolución Anual (<span id="year-label"></span>)</h2>
+            </div>
+            <div class="chart-container-line">
+                <canvas id="graficoEvolucion"></canvas>
+            </div>
+        </section>
+
+        <section class="card glass chart-full-width">
+            <div class="card-header">
+                <h2>Crecimiento Histórico (Últimos 10 Años)</h2>
+            </div>
+            <div class="chart-container-line">
+                <canvas id="graficoDecada"></canvas>
+            </div>
+        </section>
+
+        <div class="main-grid">
+            <div class="ledger-container">
+                <div class="card glass section-card">
+                    <div class="card-header">
+                        <h2>Ingresos</h2>
+                        <button class="btn-add" onclick="agregarFila('ingreso')" title="Añadir">+</button>
+                    </div>
+                    <div id="lista-ingresos" class="list-items"></div>
+                    <div class="card-footer">
+                        <span>Total Mes:</span>
+                        <span id="tot-ing" class="text-success">0.00</span>€
+                    </div>
+                </div>
+
+                <div class="card glass section-card">
+                    <div class="card-header">
+                        <h2>Gastos</h2>
+                        <button class="btn-add btn-gasto" onclick="agregarFila('gasto')" title="Añadir">+</button>
+                    </div>
+                    <div id="lista-gastos" class="list-items"></div>
+                    <div class="card-footer">
+                        <span>Total Mes:</span>
+                        <span id="tot-gas" class="text-error">0.00</span>€
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-container">
+                <div class="card glass balance-card">
+                    <h2>Balance Neto</h2>
+                    <p id="balance-total">0.00€</p>
+                    <div class="chart-container-donut">
+                        <canvas id="miGrafico"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="card glass data-management">
+            <h2>Seguridad de Datos</h2>
+            <p style="color: var(--text-dim); font-size: 0.9rem; margin-bottom: 15px; max-width: 450px; margin-left: auto; margin-right: auto;">
+                Tus datos se almacenan de forma local y privada en este navegador. 
+                Recuerda que si borras los datos de navegación, la información se perderá.
+            </p>
+            <div class="management-actions">
+                <button class="btn-action btn-danger" onclick="borrarBaseDeDatos()">⚠️ Borrar Base de Datos</button>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="mainGastos.js"></script>
+</body>
+</html>

@@ -1,0 +1,267 @@
+/* =========================================
+   SISTEMA DE TEMAS Y VARIABLES
+   ========================================= */
+:root {
+    /* MODO OSCURO (Predeterminado) */
+    --bg: #020617;
+    --card: rgba(255, 255, 255, 0.03);
+    --border: rgba(255, 255, 255, 0.1);
+    --text-main: #f1f5f9;
+    --text-dim: #94a3b8;
+    --accent: #00f2ff;
+    --success: #10b981;
+    --error: #f43f5e;
+    --input-bg: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="light"] {
+    /* MODO CLARO */
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --border: #cbd5e1;
+    --text-main: #1e293b;
+    --text-dim: #64748b;
+    --accent: #0284c7;
+    --input-bg: #f1f5f9;
+}
+
+/* =========================================
+   RESET Y BASE
+   ========================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    min-height: 100vh;
+}
+
+.dashboard {
+    padding: 30px 5%;
+    max-width: 1300px;
+    margin: auto;
+}
+
+/* =========================================
+   HEADER Y LOGOTIPO
+   ========================================= */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-logo {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    border-radius: 12px;
+}
+
+.brand h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.brand span { color: var(--accent); }
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-group {
+    display: flex;
+    align-items: center;
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 5px 15px;
+    border-radius: 50px;
+    gap: 10px;
+}
+
+.select-wrapper select {
+    background: transparent;
+    border: none;
+    color: var(--accent);
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    font-family: inherit;
+}
+
+.theme-btn {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text-main);
+    padding: 10px 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* =========================================
+   CARDS Y ENTRADAS DE DATOS
+   ========================================= */
+.card {
+    padding: 22px;
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    backdrop-filter: blur(12px);
+    margin-bottom: 20px;
+}
+
+.patrimonio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.highlight {
+    border-color: var(--accent);
+    background: linear-gradient(135deg, rgba(0, 242, 255, 0.05), transparent);
+}
+
+.card h2 { font-size: 1.1rem; margin-bottom: 15px; }
+.card h3 { font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; margin-bottom: 10px; }
+
+input {
+    background: var(--input-bg);
+    border: 1px solid var(--border);
+    color: var(--text-main);
+    padding: 12px;
+    border-radius: 12px;
+    width: 100%;
+    outline: none;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border 0.2s;
+}
+
+input:focus {
+    border-color: var(--accent);
+}
+
+/* =========================================
+   GRÁFICOS
+   ========================================= */
+.chart-container-line { height: 280px; width: 100%; }
+.chart-container-donut { height: 220px; margin-top: 15px; }
+
+/* =========================================
+   MOVIMIENTOS (LEDGER)
+   ========================================= */
+.main-grid {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr;
+    gap: 25px;
+}
+
+.card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+
+.btn-add {
+    background: var(--success);
+    color: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-gasto { background: var(--error); }
+
+.fila-transaccion {
+    display: grid;
+    grid-template-columns: 1fr 110px;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+    border-top: 1px solid var(--border);
+    font-weight: 700;
+}
+
+#balance-total { font-size: 2.5rem; font-weight: 800; color: var(--accent); }
+
+/* =========================================
+   GESTIÓN DE SEGURIDAD
+   ========================================= */
+.data-management {
+    margin-top: 40px;
+    text-align: center;
+    border: 1px dashed var(--error);
+}
+
+.management-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.btn-action {
+    padding: 12px 30px;
+    border-radius: 50px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: inherit;
+}
+
+.btn-danger {
+    background: transparent;
+    border: 2px solid var(--error);
+    color: var(--error);
+}
+
+.btn-danger:hover {
+    background: var(--error);
+    color: white;
+    transform: scale(1.02);
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+.text-success { color: var(--success); }
+.text-error { color: var(--error); }
+
+@media (max-width: 900px) {
+    .main-grid { grid-template-columns: 1fr; }
+    .main-header { flex-direction: column; text-align: center; }
+    .brand { justify-content: center; }
+}
+
+@media (max-width: 600px) {
+    .nav-logo { width: 35px; height: 35px; }
+    .brand h1 { font-size: 1.4rem; }
+}
